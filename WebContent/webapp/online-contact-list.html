@@ -1,0 +1,20 @@
+<link rel="import" href="polymer-1.5.0/components/iron-ajax/iron-ajax.html">
+<dom-module id="online-contact-list">
+
+	<template>
+	<h2>Online contacts</h2>
+	 <iron-ajax auto url="/skype-web-gateway/api/contact/online" handleAs="json" last-response="{{contacts}}"></iron-ajax>
+	<template is="dom-repeat" items="{{contacts}}">
+		<div class="col-md-12">{{item.name}}</div>
+	</template>
+	</template>
+	
+	<script>
+	 Polymer({
+		 	is: 'online-contact-list',
+	        ajaxResponse: function(event, response) {
+	            contacts = response;
+	        }
+	    });
+	</script>
+</dom-module>
